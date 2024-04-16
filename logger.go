@@ -1,6 +1,7 @@
 package log
 
 import (
+	"os"
 	"runtime/debug"
 	"strconv"
 	"strings"
@@ -82,4 +83,13 @@ func NewLog(cfg *Config) Log {
 		rawLogger: &zLog,
 	}
 	return &logger
+}
+
+func NewStdLog(l Level) Log {
+	zlog := zerolog.New(os.Stdout)
+	zerolog.SetGlobalLevel(toZerologLevel(l))
+	log := logger{
+		rawLogger: &zlog,
+	}
+	return &log
 }

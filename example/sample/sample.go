@@ -12,11 +12,13 @@ func main() {
 		MaxBackups: 10,
 		MaxAgeDays: 10,
 	}
-	log := log.NewLog(&cfg)
-	log.Debug().Str("foo", "bar").Msg("debug")
-	log.Info().Str("foo", "bar").Msg("info")
-	log.Error().Str("foo", "bar").Msg("error")
+	logger := log.NewLog(&cfg)
+	logger.Debug().Str("foo", "bar").Msg("debug")
+	logger.Info().Str("foo", "bar").Msg("info")
+	logger.Error().Str("foo", "bar").Msg("error")
 	// make
 	// make run
 	// make clean
+
+	log.Debug().Str("std", "foo bar").Msg("this is std log")
 }
